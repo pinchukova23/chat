@@ -2,11 +2,8 @@ import { type } from '@testing-library/user-event/dist/type';
 import React from 'react'
 import { Link } from 'react-router-dom';
 import styles from "../styles/Main.module.css";
+import { InputValue } from './types';
 
-type InputValue = {
-  name: string;
-  room: string;
-};
 
 const initialState: InputValue = {
   name: "",
@@ -59,7 +56,7 @@ console.log(values)
               />
             </div>
             <Link
-            to={`/chat?name=${values.name}=&room=${values.room}`}
+            to={`/chat?name=${values.name}&room=${values.room}`}
             onClick={handelClick}>
               <button type='submit' className={styles.button}>
                 Sign in

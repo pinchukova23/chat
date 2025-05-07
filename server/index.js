@@ -27,6 +27,10 @@ io.on("connection", (socket) => {
     socket.emit("message", {
       data: { user: { name: "Admin" }, message: `Hey ${user.name}` },
     });
+
+    socket.broadcast.to(user.room).emit("message", {
+      data: { user: { name: "Admin" }, message: ` ${user.name} has joined` },
+    });
   });
   io.on("disconnect", () => {
     console.log(disconnect);

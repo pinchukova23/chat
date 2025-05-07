@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
+import { MessageProps } from './types';
 
-const Message = () => {
+const Message: React.FunctionComponent<MessageProps> = ({ messages, name }) => {
   return (
     <div>
       
