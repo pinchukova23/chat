@@ -4,6 +4,7 @@ const { Server } = require("socket.io");
 const cors = require("cors");
 const app = exppess();
 const route = require("./route");
+const { addUser } = require("./users");
 
 app.use(cors({ origin: "*" }));
 app.use(route);
@@ -18,6 +19,15 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
+  socket.on("join", ({ name, room }) => {
+    socket.join(room);
+
+    const { user } = addUser({ name, room });
+
+    socket.emit("message", {
+      data: { user: { name: "Admin" }, message: `Hey ${user.name}` },
+    });
+  });
   io.on("disconnect", () => {
     console.log(disconnect);
   });
