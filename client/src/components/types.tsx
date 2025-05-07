@@ -4,7 +4,10 @@ export type InputValue = {
   };
 
 export type MessageData = {
-    content: string;
+  user: {
+    name: string;
+  };
+  message: string;
   };
 
 export type SearchParams = {

@@ -23,14 +23,18 @@ const Chat = () => {
 
   useEffect(() => {
     socket.on("message", ({ data }) => {
-      setMessages((prevState) => [...prevState, data]);
-    console.log(data)
+      console.log("NEW MESSAGE RECEIVED:", data);
+      setMessages((_state) => [..._state, data]);
     })
+    return () => {
+      socket.off("message");
+    };
   }, []);
 
 
 
-  const handeleChange = () => {
+  const handeleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setMessage(e.target.value);
 
   }
 
