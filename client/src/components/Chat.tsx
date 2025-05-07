@@ -38,8 +38,12 @@ const Chat = () => {
 
   }
 
-const handeleSubmit = () => {
+const handeleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+  if (!message) return;
 
+  socket.emit('sendMessage', { message, params });
+  setMessage("");
 }
 
 const handeleLogOut = () => {

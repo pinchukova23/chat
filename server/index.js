@@ -4,7 +4,7 @@ const { Server } = require("socket.io");
 const cors = require("cors");
 const app = exppess();
 const route = require("./route");
-const { addUser } = require("./users");
+const { addUser, findUser } = require("./users");
 
 app.use(cors({ origin: "*" }));
 app.use(route);
@@ -20,9 +20,9 @@ const io = new Server(server, {
 
 io.on("connection", (socket) => {
   socket.on("join", ({ name, room }) => {
-    socket.join(room);
+    socket.join(room); //клент подключается к комнате
 
-    const { user } = addUser({ name, room });
+    const { user } = addUser({ name, room }); //регистрация
 
     socket.emit("message", {
       data: { user: { name: "Admin" }, message: `Hey ${user.name}` },
@@ -32,6 +32,15 @@ io.on("connection", (socket) => {
       data: { user: { name: "Admin" }, message: ` ${user.name} has joined` },
     });
   });
+
+  socket.on("sendMessage", ({ message, params }) => {
+    const user = findUser(params);
+
+    if (user) {
+      io.to(user.room).emit("message", { data: { user, message } });
+    }
+  });
+
   io.on("disconnect", () => {
     console.log(disconnect);
   });
