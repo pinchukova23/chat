@@ -19,7 +19,6 @@ const Main = () => {
       [name]: value,
     }));
   };
-console.log(values)
 
   const handelClick = (e:React.MouseEvent<HTMLAnchorElement>) => {
     const { name, room } = values;

@@ -20,7 +20,7 @@ const Message: React.FunctionComponent<MessageProps> = ({ messages, name }) => {
       );
     })}
   </div>
-  )
-}
+  );
+};
 
 export default Message

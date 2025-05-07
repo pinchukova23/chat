@@ -1,4 +1,4 @@
-const users = [];
+let users = [];
 
 const findUser = (user) => {
   const userName = user.name.trim().toLowerCase();
@@ -21,4 +21,15 @@ const addUser = (user) => {
   return { isExist: !!isExist, user: currentUser };
 };
 
-module.exports = { addUser, findUser };
+const removeUser = (user) => {
+  const found = findUser(user);
+
+  if (found) {
+    users = users.filter(
+      ({ room, name }) => room === found.room && name !== found.name
+    );
+  }
+  return found;
+};
+
+module.exports = { addUser, findUser, removeUser };
