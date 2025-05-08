@@ -1,0 +1,29 @@
+.message {
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    color: #f8e8e8;
+    margin-bottom: 20px;
+    max-width: 30%;
+}
+
+.text {
+    background-color: #713e6e;
+    padding: 10px;
+    color: #f8e8e8;
+    border-radius: 0px 10px 10px 10px;
+}
+
+.me {
+display: flex;
+flex-direction: row;
+}
+
+.user {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.usertext{
+    border-radius: 10px 00px 10px 10px;
+}
